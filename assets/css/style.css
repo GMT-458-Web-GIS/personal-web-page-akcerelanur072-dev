@@ -1,0 +1,25 @@
+:root { --brand:#2563eb; --ink:#111827; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Arial; color:var(--ink); }
+nav { display:flex; gap:16px; padding:12px 20px; background:#f3f4f6; position:sticky; top:0; }
+nav a { text-decoration:none; color:#111; padding:6px 10px; border-radius:8px; }
+nav a:hover { background:#e5e7eb; }
+
+.hero { padding:40px 20px; background:linear-gradient(180deg, #eef2ff, #fff); }
+.hero h1 { margin:0 0 6px; }
+.hero p { margin:0; color:#4b5563; }
+
+/* Zorunlu animasyon şartı için */
+.fade-in { opacity:0; animation:fadeInUp .7s ease-out .05s both; }
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* Görselli tablo */
+.table { width:100%; border-collapse:collapse; margin:20px 0; }
+.table th, .table td { border:1px solid #e5e7eb; padding:10px; text-align:left; vertical-align:top; }
+.table img { max-width:160px; height:auto; display:block; border-radius:10px; }
+
+/* Harita alanı */
+#map { width:100%; height:380px; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; }

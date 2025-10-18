@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kişisel Web Sayfam</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- OpenLayers -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css">
+  <script src="https://cdn.jsdelivr.net/npm/ol/ol.js"></script>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="background.html">Background</a>
+    <a href="projects.html">Projects</a>
+  </nav>
+
+  <header class="hero">
+    <h1 class="fade-in">Merhaba 👋</h1>
+    <p class="fade-in">Web GIS dersi için kişisel web sayfası.</p>
+  </header>
+
+  <main style="padding:20px;">
+    <h2>Haritam</h2>
+    <div id="map"></div>
+  </main>
+
+  <script>
+    // Basit OSM zemin haritası (OpenLayers)
+    const map = new ol.Map({
+      target: 'map',
+      layers: [ new ol.layer.Tile({ source: new ol.source.OSM() }) ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([32.8597, 39.9334]), // Ankara
+        zoom: 10
+      })
+    });
+  </script>
+</body>
+</html>
