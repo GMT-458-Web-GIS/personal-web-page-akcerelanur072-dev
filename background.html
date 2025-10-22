@@ -6,6 +6,8 @@
   <title>Ela Akçer - Background</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <!-- ÖDEV CSS -->
+  <link rel="stylesheet" href="style.css">
   <style>
     :root {
       --primary-color: #B76CFD;
@@ -331,16 +333,6 @@
       66% { transform: translateY(10px) rotate(240deg); }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .fade-in:nth-child(1) { animation-delay: 0.2s; }
-    .fade-in:nth-child(2) { animation-delay: 0.4s; }
-    .fade-in:nth-child(3) { animation-delay: 0.6s; }
-
     @keyframes fadeIn {
       to {
         opacity: 1;
@@ -350,16 +342,6 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-      }
-
-      nav a {
-        margin: 0.3rem 0;
-      }
-
       main {
         padding: 3rem 1rem;
       }
@@ -407,14 +389,13 @@
 
   <main>
     <section class="education-section">
-      <h2 class="section-title">Eğitim</h2>
+      <h2 class="section-title fade-in">Eğitim</h2>
       <div class="timeline">
         <div class="timeline-item fade-in">
           <div class="timeline-content">
-            <div class="timeline-date">2021 - 2025</div>
+            <div class="timeline-date">2022 - 2026</div>
             <h3>Hacettepe Üniversitesi</h3>
             <p>Harita Mühendisliği - Lisans</p>
-            <p>Web GIS, Coğrafi Bilgi Sistemleri, Uzaktan Algılama dersleri</p>
           </div>
           <div class="timeline-icon">
             <i class="fas fa-graduation-cap"></i>
@@ -425,7 +406,6 @@
           <div class="timeline-content">
             <div class="timeline-date">2023</div>
             <h3>Web GIS Geliştirme</h3>
-            <p>OpenLayers ve Leaflet kütüphaneleri üzerine uzmanlık</p>
             <p>İnteraktif harita uygulamaları geliştirme</p>
           </div>
           <div class="timeline-icon">
@@ -435,7 +415,7 @@
 
         <div class="timeline-item fade-in">
           <div class="timeline-content">
-            <div class="timeline-date">2022</div>
+            <div class="timeline-date">2024</div>
             <h3>Frontend Development</h3>
             <p>Modern web teknolojileri ve responsive tasarım</p>
             <p>React, Vue.js framework'leri</p>
@@ -448,7 +428,7 @@
     </section>
 
     <section class="skills-section" style="margin-top: 6rem;">
-      <h2 class="section-title">Yetenekler & Uzmanlıklar</h2>
+      <h2 class="section-title fade-in">Yetenekler</h2>
       <div class="skills-grid">
         <div class="skill-category fade-in">
           <div class="skill-header">
