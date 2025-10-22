@@ -6,6 +6,8 @@
   <title>Ela Akçer - Projects</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <!-- ÖDEV CSS -->
+  <link rel="stylesheet" href="style.css">
   <style>
     :root {
       --primary-color: #B76CFD;
@@ -216,6 +218,7 @@
     .project-links {
       display: flex;
       gap: 1rem;
+      justify-content: center;
     }
 
     .project-link {
@@ -227,6 +230,12 @@
       font-weight: 500;
       transition: var(--transition);
       font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
     .project-link:hover {
@@ -234,15 +243,103 @@
       box-shadow: 0 8px 20px rgba(183, 108, 253, 0.4);
     }
 
-    .project-link.secondary {
-      background: transparent;
-      border: 2px solid var(--primary-color);
-      color: var(--primary-color);
+    /* Demo Modal */
+    .demo-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      backdrop-filter: blur(10px);
     }
 
-    .project-link.secondary:hover {
-      background: var(--primary-color);
+    .demo-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-content {
+      background: var(--card-bg);
+      border-radius: 25px;
+      padding: 3rem;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .demo-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--gradient);
+      border: none;
       color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .demo-close:hover {
+      transform: rotate(90deg);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .demo-header h2 {
+      font-size: 2.2rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .demo-description {
+      color: var(--light-text);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .demo-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .feature-item {
+      background: rgba(183, 108, 253, 0.05);
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid rgba(183, 108, 253, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
     }
 
     /* Footer */
@@ -295,17 +392,6 @@
       66% { transform: translateY(10px) rotate(240deg); }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .fade-in:nth-child(1) { animation-delay: 0.2s; }
-    .fade-in:nth-child(2) { animation-delay: 0.4s; }
-    .fade-in:nth-child(3) { animation-delay: 0.6s; }
-    .fade-in:nth-child(4) { animation-delay: 0.8s; }
-
     @keyframes fadeIn {
       to {
         opacity: 1;
@@ -344,6 +430,15 @@
       .project-link {
         text-align: center;
       }
+
+      .demo-content {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+
+      .demo-actions {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -365,7 +460,7 @@
 
   <main>
     <section class="web-gis-projects">
-      <h2 class="section-title">Web GIS Projeleri</h2>
+      <h2 class="section-title fade-in">Web GIS Projeleri</h2>
       <div class="projects-grid">
         <div class="project-card fade-in">
           <div class="project-icon">
@@ -380,8 +475,10 @@
             <span class="tech-tag">CSS3</span>
           </div>
           <div class="project-links">
-            <a href="index.html" class="project-link">Canlı Demo</a>
-            <a href="#" class="project-link secondary">GitHub</a>
+            <a href="index.html#map-section" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              Canlı Demo
+            </a>
           </div>
         </div>
 
@@ -398,8 +495,10 @@
             <span class="tech-tag">API</span>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link">Canlı Demo</a>
-            <a href="#" class="project-link secondary">GitHub</a>
+            <a href="istanbul-demo.html" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              Canlı Demo
+            </a>
           </div>
         </div>
 
@@ -416,15 +515,17 @@
             <span class="tech-tag">GeoJSON</span>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link">Canlı Demo</a>
-            <a href="#" class="project-link secondary">GitHub</a>
+            <a href="rota-demo.html" class="project-link">
+              <i class="fas fa-external-link-alt"></i>
+              Canlı Demo
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <section class="academic-projects" style="margin-top: 6rem;">
-      <h2 class="section-title">Akademik Projeler</h2>
+      <h2 class="section-title fade-in">Akademik Projeler</h2>
       <div class="projects-grid">
         <div class="project-card fade-in">
           <div class="project-icon">
@@ -433,14 +534,16 @@
           <h3>Coğrafi Veri Analizi</h3>
           <p>QGIS ve Python kullanarak coğrafi verilerin analizi ve görselleştirilmesi. Spatial analiz ve istatistiksel değerlendirmeler.</p>
           <div class="tech-stack">
-            <span class="tech-tag">QGIS</span>
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Pandas</span>
-            <span class="tech-tag">PostGIS</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link">Rapor</a>
-            <a href="#" class="project-link secondary">Kodlar</a>
+             <span class="tech-tag">QGIS</span>
+             <span class="tech-tag">Python</span>
+             <span class="tech-tag">Pandas</span>
+             <span class="tech-tag">PostGIS</span>
+           </div>
+           <div class="project-links">
+            <a href="cografi-analiz-demo.html" class="project-link">
+              <i class="fas fa-file-pdf"></i>
+              Raporu Görüntüle
+            </a>
           </div>
         </div>
 
@@ -456,9 +559,12 @@
             <span class="tech-tag">Python</span>
             <span class="tech-tag">Scikit-learn</span>
           </div>
+          
           <div class="project-links">
-            <a href="#" class="project-link">Analiz</a>
-            <a href="#" class="project-link secondary">Veri Seti</a>
+            <a href="uzaktan-algilama-demo.html" class="project-link">
+                <i class="fas fa-chart-bar"></i>
+                Analiz Sonuçları
+            </a>
           </div>
         </div>
 
@@ -474,14 +580,27 @@
             <span class="tech-tag">SQL</span>
             <span class="tech-tag">Spatial Index</span>
           </div>
+         
           <div class="project-links">
-            <a href="#" class="project-link">Şema</a>
-            <a href="#" class="project-link secondary">Sorgular</a>
+            <a href="spatial-db-demo.html" class="project-link">
+                <i class="fas fa-database"></i>
+                Veritabanı Şeması
+            </a>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Demo Modal -->
+  <div class="demo-modal" id="demoModal">
+    <div class="demo-content">
+      <button class="demo-close" onclick="closeDemo()">×</button>
+      <div id="demoContent">
+        <!-- Demo içeriği buraya dinamik olarak yüklenecek -->
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="email-container">
@@ -494,6 +613,173 @@
   </footer>
 
   <script>
+    // Demo gösterim fonksiyonu
+    function showDemo(projectId) {
+      const modal = document.getElementById('demoModal');
+      const demoContent = document.getElementById('demoContent');
+      
+      let content = '';
+      
+      switch(projectId) {
+        case 'cografi-analiz':
+          content = `
+            <div class="demo-header">
+              <h2>Coğrafi Veri Analizi</h2>
+              <p class="demo-description">
+                QGIS ve Python kullanılarak yapılan kapsamlı coğrafi veri analizi çalışması. 
+                Spatial analiz, istatistiksel değerlendirmeler ve görselleştirmeler.
+              </p>
+            </div>
+            
+            <div class="demo-features">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-map"></i>
+                </div>
+                <h4>Veri İşleme</h4>
+                <p>Coğrafi verilerin temizlenmesi ve hazırlanması</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+                <h4>Spatial Analiz</h4>
+                <p>Mekansal ilişkilerin analizi</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-chart-bar"></i>
+                </div>
+                <h4>Görselleştirme</h4>
+                <p>Analiz sonuçlarının harita üzerinde gösterimi</p>
+              </div>
+            </div>
+            
+            <div class="demo-actions">
+              <button class="project-link" onclick="closeDemo()">
+                <i class="fas fa-file-pdf"></i>
+                Raporu İndir (PDF)
+              </button>
+            </div>
+          `;
+          break;
+          
+        case 'uzaktan-algilama':
+          content = `
+            <div class="demo-header">
+              <h2>Uzaktan Algılama Analizi</h2>
+              <p class="demo-description">
+                Uydu görüntüleri kullanarak arazi örtüsü sınıflandırması ve zamansal değişim analizi. 
+                Makine öğrenmesi algoritmaları ile yüksek doğrulukta sınıflandırma.
+              </p>
+            </div>
+            
+            <div class="demo-features">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-satellite"></i>
+                </div>
+                <h4>Uydu Görüntüleri</h4>
+                <p>Landsat ve Sentinel verileri</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <h4>Makine Öğrenmesi</h4>
+                <p>Random Forest sınıflandırma</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-chart-area"></i>
+                </div>
+                <h4>Değişim Analizi</h4>
+                <p>Zamansal değişim tespiti</p>
+              </div>
+            </div>
+            
+            <div class="demo-actions">
+              <button class="project-link" onclick="closeDemo()">
+                <i class="fas fa-chart-bar"></i>
+                Analiz Sonuçları
+              </button>
+            </div>
+          `;
+          break;
+          
+        case 'spatial-db':
+          content = `
+            <div class="demo-header">
+              <h2>Spatial Database Tasarımı</h2>
+              <p class="demo-description">
+                PostgreSQL/PostGIS kullanılarak coğrafi veritabanı tasarımı ve optimizasyonu. 
+                Spatial sorgular, indeksleme ve performans iyileştirmeleri.
+              </p>
+            </div>
+            
+            <div class="demo-features">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-database"></i>
+                </div>
+                <h4>Veritabanı Tasarımı</h4>
+                <p>Normalizasyon ve ilişkisel tasarım</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-search"></i>
+                </div>
+                <h4>Spatial Sorgular</h4>
+                <p>Mekansal analiz sorguları</p>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h4>Performans</h4>
+                <p>İndeksleme ve optimizasyon</p>
+              </div>
+            </div>
+            
+            <div class="demo-actions">
+              <button class="project-link" onclick="closeDemo()">
+                <i class="fas fa-database"></i>
+                Veritabanı Şeması
+              </button>
+            </div>
+          `;
+          break;
+          
+        default:
+          content = `<div class="demo-header"><h2>Proje Demo</h2><p>Demo içeriği hazırlanıyor...</p></div>`;
+      }
+      
+      demoContent.innerHTML = content;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Demo kapatma fonksiyonu
+    function closeDemo() {
+      const modal = document.getElementById('demoModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // ESC tuşu ile kapatma
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeDemo();
+      }
+    });
+
+    // Modal dışına tıklayınca kapatma
+    document.getElementById('demoModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeDemo();
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
       console.log("Projects sayfası yüklendi");
     });
