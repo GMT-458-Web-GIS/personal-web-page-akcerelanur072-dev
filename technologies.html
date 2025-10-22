@@ -6,6 +6,8 @@
   <title>Ela Akçer - Technologies</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <!-- ÖDEV CSS -->
+  <link rel="stylesheet" href="style.css">
   <style>
     :root {
       --primary-color: #B76CFD;
@@ -305,17 +307,6 @@
       66% { transform: translateY(10px) rotate(240deg); }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .fade-in:nth-child(1) { animation-delay: 0.2s; }
-    .fade-in:nth-child(2) { animation-delay: 0.4s; }
-    .fade-in:nth-child(3) { animation-delay: 0.6s; }
-    .fade-in:nth-child(4) { animation-delay: 0.8s; }
-
     @keyframes fadeIn {
       to {
         opacity: 1;
@@ -371,7 +362,7 @@
 
   <main>
     <section class="skills-detailed">
-      <h2 class="section-title">Teknik Beceriler</h2>
+      <h2 class="section-title fade-in">Teknik Beceriler</h2>
       <div class="skills-categories">
         <div class="skill-category fade-in">
           <div class="skill-header">
@@ -522,8 +513,10 @@
       </div>
     </section>
 
+    <!-- TABLO YOK - ORJİNAL HAL KORUNDU -->
+
     <section class="tools-section" style="margin-top: 6rem;">
-      <h2 class="section-title">Araçlar & Yazılımlar</h2>
+      <h2 class="section-title fade-in">Araçlar & Yazılımlar</h2>
       <div class="tools-grid">
         <div class="tool-item fade-in">
           <div class="tool-icon">
