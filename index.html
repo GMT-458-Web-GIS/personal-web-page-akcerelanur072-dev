@@ -6,6 +6,8 @@
   <title>Ela Akçer - Kişisel Web Sayfam</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <!-- ÖDEV CSS -->
+  <link rel="stylesheet" href="style.css">
   <!-- OpenLayers -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css">
   <script src="https://cdn.jsdelivr.net/npm/ol@7.3.0/dist/ol.js"></script>
@@ -140,7 +142,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 8rem 2rem 6rem;
+      padding: 6rem 2rem 2rem;
       position: relative;
     }
 
@@ -199,7 +201,7 @@
 
     /* Main Content */
     main {
-      padding: 5rem 2rem;
+      padding: 2rem 2rem;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -330,8 +332,6 @@
       min-width: 300px;
       max-width: 350px;
       z-index: 1002;
-      max-height: 400px;
-      overflow-y: auto;
     }
 
     .ol-popup:after, .ol-popup:before {
@@ -362,20 +362,22 @@
       padding: 1.5rem;
     }
 
+    .popup-icon {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
     .popup-title {
       font-size: 1.3rem;
       font-weight: 600;
       margin-bottom: 0.8rem;
       color: var(--text-color);
-    }
-
-    .popup-image {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      background: #f8f9fa;
+      text-align: center;
     }
 
     .popup-description {
@@ -383,12 +385,14 @@
       font-size: 0.95rem;
       margin-bottom: 0.8rem;
       line-height: 1.5;
+      text-align: center;
     }
 
     .popup-details {
       font-size: 0.85rem;
       color: #666;
       margin-bottom: 0.5rem;
+      text-align: center;
     }
 
     .popup-close {
@@ -485,7 +489,7 @@
       transform: translateY(-3px);
     }
 
-    /* Footer - GÜNCELLENDİ */
+    /* Footer */
     footer {
       background: rgba(255, 255, 255, 0.9);
       color: var(--text-color);
@@ -535,15 +539,12 @@
       66% { transform: translateY(10px) rotate(240deg); }
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 1s ease forwards;
+    .hero {
+      padding: 6rem 2rem 2rem;
     }
-
-    .fade-in:nth-child(1) { animation-delay: 0.2s; }
-    .fade-in:nth-child(2) { animation-delay: 0.4s; }
-    .fade-in:nth-child(3) { animation-delay: 0.6s; }
+    #map-section {
+      margin-top: 1rem;
+    }
 
     @keyframes fadeIn {
       to {
@@ -554,18 +555,8 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-      }
-
-      nav a {
-        margin: 0.3rem 0;
-      }
-
       .hero {
-        padding: 6rem 1rem 4rem;
+        padding: 4rem 1rem 1rem;
       }
 
       .hero h1 {
@@ -591,7 +582,7 @@
       }
 
       main {
-        padding: 3rem 1rem;
+        padding: 1rem 1rem;
       }
 
       .section-title {
@@ -639,14 +630,15 @@
     <div class="shape"></div>
   </div>
 
-  <nav id="navbar">
+  <nav>
     <a href="index.html" class="active">Ana Sayfa</a>
     <a href="background.html">Background</a>
     <a href="projects.html">Projects</a>
+    <a href="technologies.html">Technologies</a>
   </nav>
 
   <header class="hero">
-    <div class="hero-content">
+    <div class="hero-content fade-in">
       <h1 class="fade-in">
         Merhaba, Ben<br>
         <span class="name-highlight">Ela Akçer</span>
@@ -654,18 +646,16 @@
       <div class="typing-text fade-in">Harita Mühendisliği Öğrencisi</div>
       <div class="cta-buttons">
         <a href="#map-section" class="cta-button fade-in">Haritayı Keşfet</a>
-        <a href="background.html" class="cta-button fade-in">Projelerim</a>
+        <a href="projects.html" class="cta-button fade-in">Projelerim</a>
       </div>
     </div>
   </header>
 
   <main>
     <section id="map-section">
-      <h2 class="section-title">Harita</h2>
-      
       <div class="map-controls">
         <div class="dropdown">
-          <button class="dropdown-btn" onclick="toggleDropdown('layerDropdown')">
+          <button class="dropdown-btn fade-in" onclick="toggleDropdown('layerDropdown')">
             <i class="fas fa-layer-group"></i>
             Katman Seçenekleri
             <i class="fas fa-chevron-down"></i>
@@ -677,7 +667,7 @@
         </div>
 
         <div class="dropdown">
-          <button class="dropdown-btn" onclick="toggleDropdown('placesDropdown')">
+          <button class="dropdown-btn fade-in" onclick="toggleDropdown('placesDropdown')">
             <i class="fas fa-map-marker-alt"></i>
             Yerleri Göster
             <i class="fas fa-chevron-down"></i>
@@ -691,7 +681,7 @@
         </div>
       </div>
       
-      <div class="map-container">
+      <div class="map-container fade-in">
         <div id="map">
           <div class="map-placeholder">
             <i class="fas fa-map-marked-alt"></i>
@@ -702,7 +692,7 @@
     </section>
 
     <section class="skills-section">
-      <h2 class="section-title">Yeteneklerim & Teknolojiler</h2>
+      <h2 class="section-title fade-in">Yeteneklerim & Teknolojiler</h2>
       <div class="skills-container">
         <div class="skill-category fade-in">
           <div class="skill-header">
@@ -892,10 +882,19 @@
       const properties = feature.getProperties();
       
       const popupElement = popupOverlay.getElement();
+      
+      // Türüne göre ikon belirle
+      let icon = 'fa-city';
+      if (properties.type === 'Başkent') icon = 'fa-landmark';
+      if (properties.type === 'Tarihi Yer') icon = 'fa-monument';
+      if (properties.type === 'Doğa') icon = 'fa-mountain';
+      
       popupElement.innerHTML = `
         <button class="popup-close">×</button>
         <div class="popup-content">
-          ${properties.image ? `<img src="${properties.image}" alt="${properties.name}" class="popup-image" onerror="this.style.display='none'">` : '<div class="popup-image" style="display:flex; align-items:center; justify-content:center; color:#999;"><i class="fas fa-mountain" style="font-size:3rem;"></i></div>'}
+          <div class="popup-icon">
+            <i class="fas ${icon}"></i>
+          </div>
           <div class="popup-title">${properties.name}</div>
           <div class="popup-description">${properties.description}</div>
           <div class="popup-details">
@@ -908,17 +907,24 @@
       
       popupOverlay.setPosition(coordinate);
       
-      // Popup pozisyonunu ayarla
+      // Popup pozisyonunu akıllıca ayarla
       setTimeout(() => {
         const popupRect = popupElement.getBoundingClientRect();
         const mapRect = map.getViewport().getBoundingClientRect();
         
+        // Eğer popup haritanın alt kısmına taşıyorsa, yukarı kaydır
         if (popupRect.bottom > mapRect.bottom) {
-          // Popup aşağıda taşıyor, yukarı kaydır
-          const newCoordinate = map.getCoordinateFromPixel([
-            map.getPixelFromCoordinate(coordinate)[0],
-            map.getPixelFromCoordinate(coordinate)[1] + popupRect.height / 2
-          ]);
+          const pixel = map.getPixelFromCoordinate(coordinate);
+          const newPixel = [pixel[0], pixel[1] - popupRect.height - 20];
+          const newCoordinate = map.getCoordinateFromPixel(newPixel);
+          popupOverlay.setPosition(newCoordinate);
+        }
+        
+        // Eğer popup haritanın üst kısmına taşıyorsa, aşağı kaydır
+        if (popupRect.top < mapRect.top) {
+          const pixel = map.getPixelFromCoordinate(coordinate);
+          const newPixel = [pixel[0], pixel[1] + popupRect.height + 60];
+          const newCoordinate = map.getCoordinateFromPixel(newPixel);
           popupOverlay.setPosition(newCoordinate);
         }
       }, 10);
@@ -930,7 +936,7 @@
     }
 
     // Marker ekleme fonksiyonu
-    function addMarker(lon, lat, name, description, type, country, population = null, height = null, image = null) {
+    function addMarker(lon, lat, name, description, type, country, population = null, height = null) {
       const marker = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
         name: name,
@@ -938,8 +944,7 @@
         type: type,
         country: country,
         population: population,
-        height: height,
-        image: image
+        height: height
       });
 
       let color = '#B76CFD';
@@ -961,29 +966,6 @@
       vectorSource.addFeature(marker);
     }
 
-    // Yerel görsel URL'leri - GÜNCELLENDİ
-    const localImages = {
-      'Washington DC': 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=400',
-      'Londra': 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400',
-      'Paris': 'https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400',
-      'Berlin': 'https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=400',
-      'Roma': 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400',
-      'Ankara': 'https://images.unsplash.com/photo-1594943851675-6baa04db59e4?w=400',
-            'Pekin': 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400',
-      'Dubai': 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400',
-      'Buenos Aires': 'https://images.unsplash.com/photo-1587331244718-2a1c6d1b037f?w=400',
-      'Rio de Janeiro': 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=400',
-      'Sidney': 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400',
-      'Bangkok': 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=400',
-      'Mexico City': 'https://images.unsplash.com/photo-1614543489697-84d0e661b6c1?w=400',
-      'İstanbul': 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400',
-      'Moskova': 'https://images.unsplash.com/photo-1513326738677-b964603b136d?w=400',
-      'Bogotá': 'https://images.unsplash.com/photo-1587593810160-84157c303b67?w=400',
-      'Kahire': 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=400',
-      'Yeni Delhi': 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400',
-      'Seul': 'https://images.unsplash.com/photo-1534274867514-d5b47ef89e98?w=400'
-    };
-
     // Harita kontrol fonksiyonları
     function showCapitals() {
       if (!map) return;
@@ -999,22 +981,22 @@
         {lon: 32.8597, lat: 39.9334, name: 'Ankara', desc: 'Türkiye başkenti', country: 'Türkiye', population: '5.6 milyon'},
         {lon: 139.6917, lat: 35.6895, name: 'Tokyo', desc: 'Japonya başkenti', country: 'Japonya', population: '13.9 milyon'},
         {lon: 116.4074, lat: 39.9042, name: 'Pekin', desc: 'Çin başkenti', country: 'Çin', population: '21.5 milyon'},
-        {lon: 55.2708, lat: 25.2048, name: 'Dubai', desc: 'Birleşik Arap Emirlikleri', country: 'BAE', population: '3.3 milyon'},
+        {lon: 54.3667, lat: 24.4667, name: 'Abu Dabi', desc: 'Birleşik Arap Emirlikleri başkenti', country: 'BAE', population: '1.5 milyon'},
         {lon: -58.3816, lat: -34.6037, name: 'Buenos Aires', desc: 'Arjantin başkenti', country: 'Arjantin', population: '3.1 milyon'},
-        {lon: -43.1729, lat: -22.9068, name: 'Rio de Janeiro', desc: 'Brezilya\'nın eski başkenti', country: 'Brezilya', population: '6.7 milyon'},
-        {lon: 151.2093, lat: -33.8688, name: 'Sidney', desc: 'Avustralya\'nın en büyük şehri', country: 'Avustralya', population: '5.3 milyon'},
+        {lon: -47.9292, lat: -15.7801, name: 'Brasília', desc: 'Brezilya başkenti', country: 'Brezilya', population: '3.0 milyon'},
+        {lon: 149.1289, lat: -35.2820, name: 'Kanberra', desc: 'Avustralya başkenti', country: 'Avustralya', population: '431,000'},
         {lon: 100.5018, lat: 13.7563, name: 'Bangkok', desc: 'Tayland başkenti', country: 'Tayland', population: '10.5 milyon'},
         {lon: -99.1332, lat: 19.4326, name: 'Mexico City', desc: 'Meksika başkenti', country: 'Meksika', population: '9.2 milyon'},
-        {lon: 28.9784, lat: 41.0082, name: 'İstanbul', desc: 'Türkiye\'nin en büyük şehri', country: 'Türkiye', population: '15.5 milyon'},
         {lon: 37.6173, lat: 55.7558, name: 'Moskova', desc: 'Rusya başkenti', country: 'Rusya', population: '12.6 milyon'},
         {lon: -74.0721, lat: 4.7110, name: 'Bogotá', desc: 'Kolombiya başkenti', country: 'Kolombiya', population: '7.4 milyon'},
         {lon: 31.2357, lat: 30.0444, name: 'Kahire', desc: 'Mısır başkenti', country: 'Mısır', population: '9.5 milyon'},
         {lon: 77.2090, lat: 28.6139, name: 'Yeni Delhi', desc: 'Hindistan başkenti', country: 'Hindistan', population: '11 milyon'},
-        {lon: 126.9780, lat: 37.5665, name: 'Seul', desc: 'Güney Kore başkenti', country: 'Güney Kore', population: '9.7 milyon'}
+        {lon: 126.9780, lat: 37.5665, name: 'Seul', desc: 'Güney Kore başkenti', country: 'Güney Kore', population: '9.7 milyon'},
+        {lon: -75.6972, lat: 45.4215, name: 'Ottawa', desc: 'Kanada başkenti', country: 'Kanada', population: '1.0 milyon'}
       ];
       
       capitals.forEach(capital => {
-        addMarker(capital.lon, capital.lat, capital.name, capital.desc, 'Başkent', capital.country, capital.population, null, localImages[capital.name]);
+        addMarker(capital.lon, capital.lat, capital.name, capital.desc, 'Başkent', capital.country, capital.population);
       });
       
       setActiveDropdownItem('Başkentler');
@@ -1027,26 +1009,16 @@
       vectorSource.clear();
       
       const sites = [
-        {lon: -0.1276, lat: 51.5074, name: 'Big Ben', desc: 'Londra\'nın ikonik saat kulesi', country: 'İngiltere'},
-        {lon: 2.2945, lat: 48.8584, name: 'Eyfel Kulesi', desc: 'Paris\'in sembolü', country: 'Fransa'},
-        {lon: 12.4924, lat: 41.8902, name: 'Kolezyum', desc: 'Antik Roma amfi tiyatrosu', country: 'İtalya'},
-        {lon: 116.5704, lat: 40.4319, name: 'Çin Seddi', desc: 'Dünyanın en uzun duvarı', country: 'Çin'},
-        {lon: 31.1342, lat: 29.9792, name: 'Giza Piramitleri', desc: 'Antik Mısır piramitleri', country: 'Mısır'},
-        {lon: -75.6850, lat: 45.4215, name: 'Ottawa Parlamentosu', desc: 'Kanada parlamento binası', country: 'Kanada'},
-        {lon: -87.6324, lat: 41.8781, name: 'Chicago Tiyatrosu', desc: 'Tarihi tiyatro binası', country: 'ABD'},
-        {lon: 139.7744, lat: 35.7100, name: 'Tokyo Kulesi', desc: 'Japonya\'nın ikonik kulesi', country: 'Japonya'},
-        {lon: -43.2105, lat: -22.9519, name: 'Kurtarıcı İsa Heykeli', desc: 'Rio de Janeiro sembolü', country: 'Brezilya'},
-        {lon: -79.3832, lat: 43.6532, name: 'CN Kulesi', desc: 'Toronto\'nun simgesi', country: 'Kanada'},
-        {lon: 12.3350, lat: 45.4340, name: 'Venedik Kanalları', desc: 'Tarihi su şehri', country: 'İtalya'},
-        {lon: -5.9903, lat: 37.3891, name: 'Alhambra Sarayı', desc: 'Endülüs mimarisi harikası', country: 'İspanya'},
-        {lon: 78.0421, lat: 27.1750, name: 'Tac Mahal', desc: 'Aşk anıtı', country: 'Hindistan'},
-        {lon: 135.5023, lat: 34.6690, name: 'Himeji Kalesi', desc: 'Japonya\'nın en güzel kalesi', country: 'Japonya'},
-        {lon: -72.5450, lat: -13.1631, name: 'Machu Picchu', desc: 'Antik İnka şehri', country: 'Peru'},
-        {lon: 36.2384, lat: 36.2676, name: 'Antakya Mozaik Müzesi', desc: 'Dünyanın en büyük mozaik koleksiyonu', country: 'Türkiye'},
-        {lon: 29.9750, lat: 31.1316, name: 'Luksor Tapınağı', desc: 'Antik Mısır tapınağı', country: 'Mısır'},
-        {lon: 71.4314, lat: 51.1694, name: 'Piramitler', desc: 'Kazakistan\'ın antik yapıları', country: 'Kazakistan'},
-        {lon: 44.3661, lat: 33.3152, name: 'Babil Kalıntıları', desc: 'Antik Mezopotamya şehri', country: 'Irak'},
-        {lon: 21.8243, lat: 39.0742, name: 'Olympia', desc: 'Antik Olimpiyat Oyunları yeri', country: 'Yunanistan'}
+        {lon: -0.1276, lat: 51.5074, name: 'Big Ben', desc: 'Londra parlamento binası saat kulesi', country: 'İngiltere'},
+        {lon: 2.2945, lat: 48.8584, name: 'Eyfel Kulesi', desc: 'Paris demir kulesi', country: 'Fransa'},
+        {lon: 12.4924, lat: 41.8902, name: 'Kolezyum', desc: 'Roma amfi tiyatrosu', country: 'İtalya'},
+        {lon: 116.5704, lat: 40.4319, name: 'Çin Seddi', desc: 'Tarihi savunma duvarı', country: 'Çin'},
+        {lon: 31.1342, lat: 29.9792, name: 'Giza Piramitleri', desc: 'Antik Mısır piramit kompleksi', country: 'Mısır'},
+        {lon: 78.0421, lat: 27.1750, name: 'Tac Mahal', desc: 'Agra anıt mezarı', country: 'Hindistan'},
+        {lon: 135.5023, lat: 34.6690, name: 'Himeji Kalesi', desc: 'Japonya tarihi kalesi', country: 'Japonya'},
+        {lon: -72.5450, lat: -13.1631, name: 'Machu Picchu', desc: 'İnka antik kenti', country: 'Peru'},
+        {lon: 36.2384, lat: 36.2676, name: 'Antakya Mozaik Müzesi', desc: 'Tarihi mozaik koleksiyonu', country: 'Türkiye'},
+        {lon: 29.9750, lat: 31.1316, name: 'Luksor Tapınağı', desc: 'Antik Mısır tapınak kompleksi', country: 'Mısır'}
       ];
       
       sites.forEach(site => {
@@ -1063,26 +1035,14 @@
       vectorSource.clear();
       
       const wonders = [
-        {lon: -112.1129, lat: 36.1069, name: 'Büyük Kanyon', desc: 'Arizona\'da doğal oluşum', country: 'ABD', height: '1,857 m derinlik'},
-        {lon: 147.3300, lat: -42.5000, name: 'Tazmanya', desc: 'Avustralya\'nın ada eyaleti', country: 'Avustralya'},
-        {lon: -149.1064, lat: 61.2181, name: 'Denali Dağı', desc: 'Kuzey Amerika\'nın en yüksek dağı', country: 'ABD', height: '6,190 m'},
-        {lon: -72.5450, lat: -13.1631, name: 'Machu Picchu', desc: 'Antik İnka şehri', country: 'Peru', height: '2,430 m'},
+        {lon: -112.1129, lat: 36.1069, name: 'Büyük Kanyon', desc: 'Kolorado Nehri kanyonu', country: 'ABD', height: '1,857 m derinlik'},
         {lon: 86.9250, lat: 27.9881, name: 'Everest Dağı', desc: 'Dünyanın en yüksek dağı', country: 'Nepal/Çin', height: '8,849 m'},
-        {lon: 138.7300, lat: -35.0000, name: 'Büyük Set Resifi', desc: 'Dünyanın en büyük mercan resifi', country: 'Avustralya'},
-        {lon: -62.0000, lat: -18.0000, name: 'Amazon Yağmur Ormanları', desc: 'Dünyanın en büyük tropikal ormanı', country: 'Brezilya'},
-        {lon: 25.5000, lat: -20.0000, name: 'Victoria Şelaleleri', desc: 'Dünyanın en büyük şelalesi', country: 'Zambya/Zimbabve', height: '108 m'},
-        {lon: -115.0000, lat: 44.0000, name: 'Yellowstone Milli Parkı', desc: 'Dünyanın ilk milli parkı', country: 'ABD'},
-        {lon: 97.0000, lat: 28.0000, name: 'Himalayalar', desc: 'Dünyanın en yüksek dağ silsilesi', country: 'Nepal'},
-        {lon: -68.0000, lat: -26.0000, name: 'And Dağları', desc: 'Dünyanın en uzun dağ silsilesi', country: 'Güney Amerika'},
-        {lon: 37.0000, lat: 3.0000, name: 'Kilimanjaro Dağı', desc: 'Afrika\'nın en yüksek dağı', country: 'Tanzanya', height: '5,895 m'},
-        {lon: -110.0000, lat: 37.0000, name: 'Bryce Kanyonu', desc: 'Doğal amfi tiyatro oluşumu', country: 'ABD'},
-        {lon: 105.0000, lat: -5.0000, name: 'Komodo Adası', desc: 'Komodo ejderlerinin evi', country: 'Endonezya'},
-        {lon: -75.0000, lat: -10.0000, name: 'Galapagos Adaları', desc: 'Biyolojik çeşitlilik harikası', country: 'Ekvador'},
-        {lon: 35.0000, lat: 28.0000, name: 'Sina Dağı', desc: 'Kutsal dağ', country: 'Mısır'},
-        {lon: -120.0000, lat: 47.0000, name: 'Rainier Dağı', desc: 'Aktif stratovolkan', country: 'ABD', height: '4,392 m'},
-        {lon: 100.0000, lat: 20.0000, name: 'Mekong Nehri', desc: 'Güneydoğu Asya\'nın ana nehri', country: 'Çin'},
+        {lon: 138.7300, lat: -35.0000, name: 'Büyük Set Resifi', desc: 'Mercan resif sistemi', country: 'Avustralya'},
+        {lon: -62.0000, lat: -18.0000, name: 'Amazon Yağmur Ormanları', desc: 'Tropikal yağmur ormanı', country: 'Brezilya'},
+        {lon: 25.5000, lat: -20.0000, name: 'Victoria Şelaleleri', desc: 'Zambezi Nehri şelalesi', country: 'Zambya/Zimbabve', height: '108 m'},
         {lon: -60.0000, lat: -5.0000, name: 'Angel Şelalesi', desc: 'Dünyanın en yüksek şelalesi', country: 'Venezuela', height: '979 m'},
-        {lon: 25.0000, lat: -29.0000, name: 'Table Mountain', desc: 'Düz tepeli dağ', country: 'Güney Afrika'}
+        {lon: 37.0000, lat: 3.0000, name: 'Kilimanjaro Dağı', desc: 'Volkanik dağ', country: 'Tanzanya', height: '5,895 m'},
+        {lon: -110.0000, lat: 37.0000, name: 'Bryce Kanyonu', desc: 'Doğal amfi tiyatro oluşumu', country: 'ABD'}
       ];
       
       wonders.forEach(wonder => {
