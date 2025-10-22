@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Uzaktan Algılama - Demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary-color: #B76CFD;
+      --secondary-color: #FF9FF3;
+      --accent-color: #FF6B9D;
+      --light-purple: #E2C3FF;
+      --pastel-pink: #FFD6E7;
+      --text-color: #5A4A6D;
+      --light-text: #8B7B9D;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --gradient: linear-gradient(135deg, #B76CFD 0%, #FF9FF3 50%, #FF6B9D 100%);
+      --soft-gradient: linear-gradient(135deg, #E2C3FF 0%, #FFD6E7 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-color);
+      line-height: 1.6;
+      background: var(--soft-gradient);
+      min-height: 100vh;
+    }
+
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: var(--soft-gradient);
+    }
+
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.3;
+      border-radius: 50%;
+      background: var(--primary-color);
+      animation: float 15s infinite linear;
+    }
+
+    .shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      left: 80%;
+      animation-delay: -5s;
+      background: var(--secondary-color);
+    }
+
+    .shape:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      top: 80%;
+      left: 20%;
+      animation-delay: -10s;
+      background: var(--accent-color);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 5px 25px rgba(183, 108, 253, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      margin: 0 1.5rem;
+      padding: 0.7rem 1.5rem;
+      transition: var(--transition);
+      border-radius: 30px;
+    }
+
+    nav a:hover {
+      color: white;
+      background: var(--gradient);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(183, 108, 253, 0.3);
+    }
+
+    .demo-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(183, 108, 253, 0.1);
+    }
+
+    .demo-header h1 {
+      font-size: 2.5rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .demo-description {
+      color: var(--light-text);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .analysis-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(183, 108, 253, 0.1);
+      transition: var(--transition);
+    }
+
+    .analysis-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(183, 108, 253, 0.2);
+    }
+
+    .analysis-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .image-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .image-container {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-text);
+      font-size: 3rem;
+    }
+
+    .chart-container {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-top: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .accuracy-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .metric-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      color: var(--light-text);
+      font-size: 0.9rem;
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-badge {
+      padding: 0.4rem 0.8rem;
+      background: rgba(183, 108, 253, 0.1);
+      color: var(--primary-color);
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(183, 108, 253, 0.2);
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--gradient);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      margin-top: 2rem;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+
+    .back-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(183, 108, 253, 0.3);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(120deg); }
+      66% { transform: translateY(10px) rotate(240deg); }
+    }
+
+    @media (max-width: 768px) {
+      .demo-container {
+        padding: 0 1rem;
+      }
+      
+      .demo-header h1 {
+        font-size: 2rem;
+      }
+      
+      .analysis-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .image-comparison {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="projects.html">Projelere Dön</a>
+  </nav>
+
+  <main class="demo-container">
+    <div class="demo-header">
+      <h1>Uzaktan Algılama Analizi</h1>
+      <p class="demo-description">
+        Uydu görüntüleri kullanarak arazi örtüsü sınıflandırması ve zamansal değişim analizi. 
+        Makine öğrenmesi algoritmaları ile yüksek doğrulukta sınıflandırma.
+      </p>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-card">
+        <h3><i class="fas fa-satellite"></i> Uydu Görüntüleri Karşılaştırması</h3>
+        <p>2015 ve 2023 yıllarına ait Landsat uydu görüntüleri karşılaştırması.</p>
+        <div class="image-comparison">
+          <div class="image-container">
+            <div class="image-placeholder">
+              <i class="fas fa-satellite-dish"></i>
+            </div>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--light-text);">2015 Landsat Görüntüsü</p>
+          </div>
+          <div class="image-container">
+            <div class="image-placeholder">
+              <i class="fas fa-satellite"></i>
+            </div>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--light-text);">2023 Landsat Görüntüsü</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis-card">
+        <h3><i class="fas fa-layer-group"></i> Arazi Örtüsü Sınıflandırması</h3>
+        <p>Random Forest algoritması ile yapılan arazi örtüsü sınıflandırma sonuçları.</p>
+        <div class="chart-container">
+          <canvas id="landcoverChart"></canvas>
+        </div>
+      </div>
+
+      <div class="analysis-card">
+        <h3><i class="fas fa-chart-line"></i> Değişim Analizi</h3>
+        <p>2015-2023 yılları arasında arazi kullanım değişim trendleri.</p>
+        <div class="chart-container">
+          <canvas id="changeChart"></canvas>
+        </div>
+      </div>
+
+      <div class="analysis-card">
+        <h3><i class="fas fa-tachometer-alt"></i> Sınıflandırma Doğruluğu</h3>
+        <p>Makine öğrenmesi modelinin performans metrikleri.</p>
+        <div class="accuracy-metrics">
+          <div class="metric-card">
+            <div class="metric-value">94.2%</div>
+            <div class="metric-label">Toplam Doğruluk</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">0.928</div>
+            <div class="metric-label">Kappa Katsayısı</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">91.5%</div>
+            <div class="metric-label">F1-Skor</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">96.8%</div>
+            <div class="metric-label">Precision</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <h3><i class="fas fa-tools"></i> Kullanılan Teknolojiler</h3>
+      <div class="tech-badges">
+        <span class="tech-badge">ArcGIS</span>
+        <span class="tech-badge">ERDAS Imagine</span>
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Scikit-learn</span>
+        <span class="tech-badge">TensorFlow</span>
+        <span class="tech-badge">GDAL</span>
+        <span class="tech-badge">Rasterio</span>
+        <span class="tech-badge">OpenCV</span>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="projects.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Projelere Dön
+      </a>
+    </div>
+  </main>
+
+  <script>
+    // Arazi Örtüsü Grafiği
+    const landcoverCtx = document.getElementById('landcoverChart').getContext('2d');
+    new Chart(landcoverCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Orman', 'Tarım', 'Yerleşim', 'Su', 'Çıplak Arazi', 'Sanayi'],
+        datasets: [{
+          data: [28, 35, 18, 8, 6, 5],
+          backgroundColor: [
+            '#27ae60',
+            '#f39c12',
+            '#e74c3c',
+            '#3498db',
+            '#95a5a6',
+            '#8e44ad'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          title: {
+            display: true,
+            text: 'Arazi Örtüsü Dağılımı (2023)'
+          }
+        }
+      }
+    });
+
+    // Değişim Analizi Grafiği
+    const changeCtx = document.getElementById('changeChart').getContext('2d');
+    new Chart(changeCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Orman', 'Tarım', 'Yerleşim', 'Su', 'Çıplak Arazi', 'Sanayi'],
+        datasets: [
+          {
+            label: '2015',
+            data: [32, 40, 12, 9, 5, 2],
+            backgroundColor: '#B76CFD',
+          },
+          {
+            label: '2023',
+            data: [28, 35, 18, 8, 6, 5],
+            backgroundColor: '#FF6B9D',
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Arazi Örtüsü Değişimi (2015-2023)'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
